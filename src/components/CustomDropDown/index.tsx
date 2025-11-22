@@ -8,9 +8,9 @@ export interface DropdownOption {
 
 interface CustomDropdownProps {
   options: DropdownOption[];
-  value: string | number;                       // ⬅ UPDATED
+  value: string | number;                      
   placeholder?: string;
-  onChange: (value: string | number) => void;   // ⬅ UPDATED
+  onChange: (value: string | number) => void;   
   width?: number | string;
 }
 
@@ -35,7 +35,10 @@ export default function CustomDropdown({
     return () => document.removeEventListener("mousedown", handleClick);
   }, []);
 
-  const selected = options.find((o) => o.value === value);
+  // 🔥 FIX: Compare values safely
+  const selected = options.find(
+    (o) => String(o.value) === String(value)
+  );
 
   return (
     <div className="dropdown-container" style={{ width }} ref={ref}>
@@ -52,9 +55,11 @@ export default function CustomDropdown({
           {options.map((opt) => (
             <div
               key={opt.value}
-              className={`dropdown-item ${opt.value === value ? "selected" : ""}`}
+              className={`dropdown-item ${
+                String(opt.value) === String(value) ? "selected" : ""
+              }`}
               onClick={() => {
-                onChange(opt.value);   // ⬅ Now number OR string
+                onChange(opt.value);   
                 setOpen(false);
               }}
             >
