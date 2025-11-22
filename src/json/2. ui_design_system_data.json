@@ -1,0 +1,58 @@
+[
+  {
+    "token_id": "TOKEN_1",
+    "theme": "corporate",
+    "component": "Button",
+    "variant": "primary",
+    "font_family": "Poppins",
+    "font_size": "12px",
+    "primary_color": "#43A047",
+    "secondary_color": "#1E88E5",
+    "border_radius": "9px",
+    "spacing": "16px",
+    "shadow": "0px 4px 4px rgba(0,0,0,0.4)",
+    "animation_duration": "484ms"
+  },
+  {
+    "token_id": "TOKEN_2",
+    "theme": "dark",
+    "component": "Modal",
+    "variant": "text",
+    "font_family": "Roboto",
+    "font_size": "13px",
+    "primary_color": "#43A047",
+    "secondary_color": "#00897B",
+    "border_radius": "8px",
+    "spacing": "4px",
+    "shadow": "0px 4px 5px rgba(0,0,0,0.1)",
+    "animation_duration": "464ms"
+  },
+  {
+    "token_id": "TOKEN_3",
+    "theme": "light",
+    "component": "Card",
+    "variant": "secondary",
+    "font_family": "Poppins",
+    "font_size": "14px",
+    "primary_color": "#F4511E",
+    "secondary_color": "#F4511E",
+    "border_radius": "2px",
+    "spacing": "4px",
+    "shadow": "0px 5px 15px rgba(0,0,0,0.1)",
+    "animation_duration": "291ms"
+  },
+  {
+    "token_id": "TOKEN_10",
+    "theme": "corporate",
+    "component": "Dropdown",
+    "variant": "primary",
+    "font_family": "Inter",
+    "font_size": "18px",
+    "primary_color": "#43A047",
+    "secondary_color": "#00897B",
+    "border_radius": "4px",
+    "spacing": "24px",
+    "shadow": "0px 1px 6px rgba(0,0,0,0.2)",
+    "animation_duration": "546ms"
+  }
+]
