@@ -29,28 +29,30 @@ export function Table<T>({
   isExpanded,
   renderExpanded,
   onRowClick,
-  pageSize = 20,
+  pageSize = 10,
   showHead = true,
 }: TableProps<T>) {
   const [page, setPage] = useState(1);
-  const [sortKey, setSortKey] = useState<string | null>(null);
+  const [sortKey, setSortKey] = useState<keyof T | null>(null);
   const [sortDir, setSortDir] = useState<"asc" | "desc">("asc");
+  
+  // --- THE FIX: Maintain internal state for page size ---
   const [internalPageSize, setInternalPageSize] = useState<number>(pageSize);
 
   let sortedData = data;
-
   if (sortKey) {
-    sortedData = sortData(sortedData, sortKey as keyof T, sortDir);
+    sortedData = sortData(sortedData, sortKey, sortDir);
   }
 
+  // Use internalPageSize for calculations
   const totalPages = Math.ceil(data.length / internalPageSize);
   const start = (page - 1) * internalPageSize;
-  const currentData = data.slice(start, start + internalPageSize);
+  const currentData = sortedData.slice(start, start + internalPageSize);
+
 
   const handleSort = (col: Column<T>) => {
     if (!col.sortable) return;
-
-    const key = col.key as string;
+    const key = col.key as keyof T;
 
     if (sortKey === key) {
       setSortDir((prev) => (prev === "asc" ? "desc" : "asc"));
@@ -59,7 +61,6 @@ export function Table<T>({
       setSortDir("asc");
     }
   };
-
   return (
     <div className="table-wrapper">
       <table className="custom-table">
@@ -112,19 +113,21 @@ export function Table<T>({
         </tbody>
       </table>
 
-    <Pagination
-  currentPage={page}
-  totalPages={totalPages}
-  onChange={(p) => setPage(p)}
-  maxVisible={10}
-  pageSizeOptions={[10, 20, 30]}          // show dropdown
-  currentPageSize={pageSize}
-  onPageSizeChange={(size) => {
-    setPage(1);            // reset page to 1 on size change
-    // update pageSize state: you need to make pageSize into state
-    setInternalPageSize(size);
-  }}
-/>
+      <Pagination
+        currentPage={page}
+        totalPages={totalPages}
+        onChange={(p) => setPage(p)}
+        maxVisible={5}
+        pageSizeOptions={[5, 10, 20, 50]}
+        
+        // --- THE FIX: Pass the STATE variable, not the default prop ---
+        currentPageSize={internalPageSize}
+        
+        onPageSizeChange={(size) => {
+          setPage(1);
+          setInternalPageSize(size);
+        }}
+      />
     </div>
   );
 }

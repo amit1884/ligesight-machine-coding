@@ -1,6 +1,5 @@
-import { useState, useRef, useEffect } from "react";
-import "./dropdown.css";
-
+import { useEffect, useRef, useState } from "react";
+import './dropdown.css'
 export interface DropdownOption {
   label: string;
   value: string | number;
@@ -10,11 +9,11 @@ interface CustomDropdownProps {
   options: DropdownOption[];
   value: string | number;                      
   placeholder?: string;
-  onChange: (value: string | number) => void;   
+  onChange: (value: string | number | any) => void;   
   width?: number | string;
 }
 
-export default function CustomDropdown({
+function CustomDropdown({
   options,
   value,
   placeholder = "Select...",
@@ -24,7 +23,6 @@ export default function CustomDropdown({
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  // Close on outside click
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
       if (ref.current && !ref.current.contains(e.target as Node)) {
@@ -35,7 +33,6 @@ export default function CustomDropdown({
     return () => document.removeEventListener("mousedown", handleClick);
   }, []);
 
-  // 🔥 FIX: Compare values safely
   const selected = options.find(
     (o) => String(o.value) === String(value)
   );
@@ -71,3 +68,5 @@ export default function CustomDropdown({
     </div>
   );
 }
+
+export default CustomDropdown

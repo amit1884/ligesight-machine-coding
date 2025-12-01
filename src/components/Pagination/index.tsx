@@ -1,19 +1,16 @@
 import CustomDropdown from "../CustomDropDown";
-import "./pagination.css";
-
+import './pagination.css'
 interface PaginationProps {
     currentPage: number;
     totalPages: number;
     onChange: (page: number) => void;
     maxVisible?: number;
-
-    // new
     pageSizeOptions?: number[];
     currentPageSize?: number;
     onPageSizeChange?: (size: number) => void;
 }
 
-export default function Pagination({
+function Pagination({
     currentPage,
     totalPages,
     onChange,
@@ -46,7 +43,6 @@ export default function Pagination({
 
     return (
         <div className="pagination-container">
-            {/* LEFT SIDE (page numbers) */}
             <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
                 <button
                     className="nav-btn"
@@ -81,7 +77,6 @@ export default function Pagination({
                 </button>
             </div>
 
-            {/* RIGHT SIDE: PAGE SIZE DROPDOWN */}
             {pageSizeOptions && onPageSizeChange && (
                 <div className="pageSize-container">
                     <label style={{ color: "#374151", fontSize: 13 }}>Show</label>
@@ -90,7 +85,7 @@ export default function Pagination({
                             label: n.toString(),
                             value: n
                         }))}
-                        value={currentPageSize}
+                        value={currentPageSize || pageSizeOptions[0]}
                         onChange={(val) => onPageSizeChange(Number(val))}
                         width={90}
                     />
@@ -99,3 +94,4 @@ export default function Pagination({
         </div>
     );
 }
+export default Pagination

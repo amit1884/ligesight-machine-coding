@@ -1,68 +1,37 @@
-.pagination-container {
+ .pagination-container {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 6px;
-    margin-top: 12px;
-    flex-wrap: wrap;
-    padding: 16px;
-}
-
-.page-btn,
-.nav-btn {
+    margin-top: 1rem;
+    padding: 1rem 0;
+    border-top: 1px solid #e5e7eb;
+  }
+  .nav-btn, .page-btn {
     padding: 6px 12px;
-    background: white;
     border: 1px solid #d1d5db;
-    border-radius: 6px;
+    background: white;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
-    transition: 0.15s ease;
-}
-
-.page-btn:hover,
-.nav-btn:hover {
-    background: #f3f4f6;
-}
-
-.page-btn.active {
-    background: #2563eb;
-    border-color: #2563eb;
-    color: white;
-}
-
-.nav-btn:disabled {
-    opacity: 0.4;
+  }
+  .nav-btn:disabled {
+    opacity: 0.5;
     cursor: not-allowed;
-}
-
-.ellipsis {
-    padding: 6px 8px;
+  }
+  .page-btn.active {
+    background: #2563eb;
+    color: white;
+    border-color: #2563eb;
+  }
+  .page-btn:hover:not(.active) {
+    background: #f3f4f6;
+  }
+  .ellipsis {
+    padding: 0 4px;
     color: #6b7280;
-    user-select: none;
-}
-
-/* existing rules kept... */
-
-.page-size-select {
-    padding: 6px 10px;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    background: white;
-    font-size: 14px;
-}
-
-/* ensure container aligns the select nicely on small screens */
-.pagination-container {
+  }
+  .pageSize-container {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-top: 12px;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.pageSize-container {
-    margin-left: 12;
-    display: flex;
-    align-items: center;
-    gap: 8
-}
+    gap: 8px;
+  }
